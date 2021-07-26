@@ -5,14 +5,7 @@
 --select *
 --from COVIDPROJ..CovidVaccinations
 --order by 5
----------------------------------------------------------------------
-/* CLEANING */
-
-Select *
-From COVIDPROJ..CovidDeaths
-Where continent is not null
-Order By 3,4
-
+--------------------------------------------------------------------
 ----------------------------------------------------------------------
 /* SELECTING DATA TO USE */
 
@@ -171,18 +164,17 @@ Order by 1,2,3
   
   ----------CREATING VIEW to store data FOR VISUALIZATIONS------
 
---Create View PercentPopulatedVaccinated as
---Select CoDeaths.continent, CoDeaths.location, CoDeaths.date,
---CoDeaths.population, CoVac.new_vaccinations,
---SUM(CONVERT(int, Covac.new_vaccinations)) 
---OVER (Partition by CoDeaths.location Order By CoDeaths.location, CoDeaths.date)
---as SummingPeopleVac --(SummingPeopleVac/population)*100
---From COVIDPROJ..CovidDeaths as CoDeaths
---JOIN COVIDPROJ..CovidVaccinations as CoVac
---	 ON CoDeaths.date = CoVac.date 
---	 and CoDeaths.location = CoVac.location
---Where CoDeaths.continent is not null and CoVac.new_vaccinations is not null
+Create View PercentPopulatedVaccinated as
+Select CoDeaths.continent, CoDeaths.location, CoDeaths.date,
+CoDeaths.population, CoVac.new_vaccinations,
+SUM(CONVERT(int, Covac.new_vaccinations)) 
+OVER (Partition by CoDeaths.location Order By CoDeaths.location, CoDeaths.date)
+as SummingPeopleVac --(SummingPeopleVac/population)*100
+From COVIDPROJ..CovidDeaths as CoDeaths
+JOIN COVIDPROJ..CovidVaccinations as CoVac
+	 ON CoDeaths.date = CoVac.date
+	 and CoDeaths.location = CoVac.location
+Where CoDeaths.continent is not null and CoVac.new_vaccinations is not null
 
---Select *
---From PercentPopulatedVaccinated
---Order by 1,2,3
+Select *
+From PercentPopulatedVaccinated
