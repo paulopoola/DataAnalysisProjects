@@ -1,3 +1,9 @@
+
+/*
+Covid 19 Data Exploration 
+Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
+*/
+
 --select *
 --from COVIDPROJ..CovidDeaths
 --order by 3,4
@@ -5,8 +11,9 @@
 --select *
 --from COVIDPROJ..CovidVaccinations
 --order by 5
---------------------------------------------------------------------
-----------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
 /* SELECTING DATA TO USE */
 
 Select Location, date, total_cases, new_cases, total_deaths, population
