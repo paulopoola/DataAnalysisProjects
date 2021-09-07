@@ -58,7 +58,7 @@ def Check_Price():
 
             server.sendmail('sendermail@mail.com','recievermail@mail.com', msg)
             server.quit()
-            send_mail()
+        send_mail()
     else:
         print('Price is still above 900')
 while True:
